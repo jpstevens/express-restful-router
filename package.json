@@ -1,7 +1,7 @@
 {
   "name": "express-restful-router",
   "version": "0.0.0-pre1",
-  "description": "Restful router for Express.js",
+  "description": "Restful API router for Express.js",
   "main": "dist/restful-router.js",
   "scripts": {
     "test": "grunt test",
