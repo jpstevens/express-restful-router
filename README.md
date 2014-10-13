@@ -1,4 +1,6 @@
 # express-restful-router
+[![Build Status](https://secure.travis-ci.org/jpstevens/express-restful-router.png?branch=master)](https://travis-ci.org/jpstevens/express-restful-router)
+![Downloads/month](http://img.shields.io/npm/dm/express-restful-router.svg)
 
 ## Usage
 
