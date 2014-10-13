@@ -1,5 +1,5 @@
 shared = require 'mocha-shared'
-RestfulRouter = require '../../src/restful-router'
+RestfulRouter = require '../../src'
 
 shared.setup 'init app router', (resource) ->
 
@@ -8,6 +8,7 @@ shared.setup 'init app router', (resource) ->
     @config.resource = resource
     @config.controller = @controller
     @config.only = @only
+    @config.custom = @custom
     @app.use '/', RestfulRouter @config
 
 shared.setup 'init controller', ->
@@ -34,7 +35,7 @@ shared.behavior 'it calls the expected controller method', ->
 
   it 'calls the expected controller method', ->
 
-    expect(@res.body.message).to.equal @controllerMethod
+    expect(@res.body.message).to.equal @action
 
 shared.behavior 'it assigns the expected ID', ->
 
@@ -47,23 +48,23 @@ shared.behavior 'it assigns the expected ID', ->
 
 shared.scenario 'calling a valid route for a resource', (config) ->
 
-  describe "to #{config.method} a resource", ->
+  describe "to #{config.action} a resource", ->
 
     beforeEach ->
-      @method = config.http
+      @method = config.method
       @route = config.route or '/example'
-      @controllerMethod = config.method
+      @action = config.action
 
     shared.behavior 'it calls the expected controller method'
 
 shared.scenario 'calling a valid route for a resource with an ID', (config) ->
 
-  describe "to #{config.method} a resource", ->
+  describe "to #{config.action} a resource", ->
 
     beforeEach ->
-      @method = config.http
+      @method = config.method
       @route = config.route or '/example'
-      @controllerMethod = config.method
+      @action = config.action
       @id = '123'
 
     shared.behavior 'it calls the expected controller method'
@@ -71,12 +72,12 @@ shared.scenario 'calling a valid route for a resource with an ID', (config) ->
 
 shared.scenario 'calling an invalid route for a resource', (config) ->
 
-  describe "to #{config.method} a resource", ->
+  describe "to #{config.action} a resource", ->
 
     beforeEach ->
-      @method = config.http
+      @method = config.method
       @route = config.route or '/example'
-      @controllerMethod = config.method
+      @action = config.action
 
     shared.setup 'init app router', 'example'
     shared.setup 'make request'
